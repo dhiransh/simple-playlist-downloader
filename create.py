@@ -32,6 +32,7 @@ def create_download_list():
     playlist_link = input('Paste Youtube Playlist Link here : ')
 
     playlist = Playlist(playlist_link)
+    print(playlist)
     count = len(playlist)
     for video in playlist:
         if video in existing_list:
