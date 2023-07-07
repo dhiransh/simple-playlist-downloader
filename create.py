@@ -43,6 +43,10 @@ def create_download_list():
             count -= 1
         else:
             title = YouTube(video).title
+            print(title)
+            duration = divmod(YouTube(video).length, 60)
+            length = f'{duration[0]}:{duration[1]}'
+            print(length)
             print(f'{count} videos remaining to be downloaded...')
             download = input(f'Do you want to download -----{title} (enter y/n) to view click ({video}) : ')
             if download.lower() == 'y':
@@ -50,7 +54,7 @@ def create_download_list():
                 os.system(f'yt-dlp --extractor-args "youtube:player-client=web" --user-agent "" -F {video}')
                 audio_input = input('Enter Audio Format ID : ')
                 video_input = input('Enter vidoe Format ID : ')
-                write_to_csv('download_list.csv',[video,title,audio_input,video_input])
+                write_to_csv('download_list.csv',[video,title,length,audio_input,video_input])
             elif download.lower() == 'n':
                 count -= 1
                 print(f'you have chosen not to download the given video - {title}')
